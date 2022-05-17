@@ -5,9 +5,9 @@ const Login = (props) => {
   const [isConnecting, setIsConnecting] = useState(false);
   const [provider, setProvider] = useState(window.ethereum);
   const [isMetaMaskInstalled, setIsMetaMaskInstalled] = useState(false);
-  
 
-    useEffect(() => {
+
+  useEffect(() => {
     setProvider(detectProvider());
   }, []);
 
@@ -15,7 +15,7 @@ const Login = (props) => {
     if (provider) {
       if (provider !== window.ethereum) {
         alert(
-          "Not window.ethereum provider"
+          "install metamask"
         );
       }
       setIsMetaMaskInstalled(true);
@@ -41,25 +41,19 @@ const Login = (props) => {
     });
     setIsConnecting(false);
     props.onLogin(provider);
-  
+
   };
 
   return (
     <>
-      {isMetaMaskInstalled && (
-        <button
-          onClick={onLoginHandler}
-          type="button"
-        >
-          {!isConnecting && "Connect"}
-          {isConnecting && "Loading..."}
-        </button>
-      )}
-      {!isMetaMaskInstalled && (
-        <p>
-          Install MetaMask
-        </p>
-      )}
+      <button
+        onClick={onLoginHandler}
+        type="button"
+      >
+      </button>
+      <p>
+        Install MetaMask
+      </p>
     </>
   );
 };
