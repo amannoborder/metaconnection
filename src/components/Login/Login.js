@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
+import Web3 from "web3";
 
 const Login = (props) => {
   const [isConnecting, setIsConnecting] = useState(false);
   const [provider, setProvider] = useState(window.ethereum);
   const [isMetaMaskInstalled, setIsMetaMaskInstalled] = useState(false);
+  
 
-  useEffect(() => {
+    useEffect(() => {
     setProvider(detectProvider());
   }, []);
 
@@ -39,6 +41,7 @@ const Login = (props) => {
     });
     setIsConnecting(false);
     props.onLogin(provider);
+  
   };
 
   return (

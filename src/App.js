@@ -9,8 +9,7 @@ function App() {
   const [chainId, setChainId] = useState(null);
   const [web3, setWeb3] = useState(null);
 
-
-
+  
   const onLogin = async (provider) => {
     const web3 = new Web3(provider);
     const accounts = await web3.eth.getAccounts();
@@ -18,7 +17,7 @@ function App() {
     if (accounts.length === 0) {
       console.log("Please connect to MetaMask!");
     } else if (accounts[0] !== currentAccount) {
-    // setProvider(provider);
+    setProvider(provider);
     setWeb3(web3);
       setChainId(chainId);
       setCurrentAccount(accounts[0]);
@@ -52,10 +51,24 @@ function App() {
     setIsConnected(false);
     setCurrentAccount(null);
     setChainId(null)
-  };
+  };  
+ /*const transfer=(currentAccount)=>{
+    let   web3 = new Web3();
+    const myContract = new web3.eth.Contract(abi,address);
+  myContract.methods.approve(address,"1").send({
+    from: currentAccount[0],
+    to: address,
+    value:  web3.utils.toWei('1', 'ether')
+    }).then(transactionHash=> alert(transactionHash)).catch(error=>alert(error));
+  }
 
-
-
+    const transfer=() =>{
+      let   web3 = new Web3();
+      const web3Accounts =  web3.eth.getAccounts();
+      const myContract = new web3.eth.Contract(abi,address);
+      myContract.methods.allowance(address,web3Accounts).call()
+     }
+     */
   return (
     <div>
       <header className="main-header">
@@ -68,6 +81,7 @@ function App() {
 
         <h1>Account address:{currentAccount}</h1>
         <h1>Current Network Id:{chainId}</h1>
+
       </main>
     </div>
   );
